@@ -3,5 +3,5 @@
  */
  
  function abc(){
-	history.back();	
+	history.back();
 }
