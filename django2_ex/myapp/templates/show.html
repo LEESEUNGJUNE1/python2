@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>show.html</title>
+</head>
+<body>
+<h1>Show 페이지</h1>
+전송된 메세지 내용 : {{message}}
+선택한 성별 : {{gen}}
+{% if gen == '남' %}
+	<img src="../static/images/Man.jpg" width="150"/>
+{% elif gen == '여' %}
+	<img src="../static/images/Woman.jpg" width="150" />
+{% endif %}
+</body>
+</html>

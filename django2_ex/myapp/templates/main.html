@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>main.html</title>
+</head>
+<body>
+<h1>메인 페이지 입니다.</h1>
+메세지 전송하기
+<form action="/message/show" method="post">{% csrf_token %}
+메세지 : <input type="text" name="message">
+성별 : 
+<input type="radio" name="gen" value="남" checked="checked"/>남자
+<input type="radio" name="gen" value="여"/>여자<br>
+<input type="submit" value="확인">
+</form>
+</body>
+</html>

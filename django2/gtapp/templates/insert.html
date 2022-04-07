@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert.html</title>
+</head>
+<body>
+회원자료 입력 <p/>
+<!-- GET 방식
+<form action="/member/insertok" method="get">
+ -->
+<form action="/member/insert" method="post">{% csrf_token %}
+이름 : <input type="text" name="name">
+<input type="submit" value="확인">
+</form>
+</body>
+</html>
