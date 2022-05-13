@@ -75,7 +75,3 @@ plt.show()
 print(stats.ttest_1samp(fdata.weight, popmean = 2800))
 # Ttest_1sampResult(statistic=2.233187669387536, pvalue=0.03926844173060218)
 # pvalue=0.0392 < 0.05 이므로 귀무가설을 기각하고 대립가설을 채택
-
-
-
-
