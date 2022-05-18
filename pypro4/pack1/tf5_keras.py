@@ -33,8 +33,8 @@ model.add(Activation('sigmoid'))
 #               loss = 'binary_crossentropy', metrics = ['accuracy'])
 # model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=0.01),
 #               loss = 'binary_crossentropy', metrics = ['accuracy'])
-#model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.1),
-#              loss = 'binary_crossentropy', metrics = ['accuracy'])
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.1),
+              loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 # 4. 모델 학습시키기
 model.fit(x, y, epochs=10, batch_size=1, verbose=2)
