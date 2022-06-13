@@ -9,7 +9,8 @@ def mainFunc(request):
     return render(request,'main.html', {'msg':imsi})
 
 def listFunc(request):
-    data_all = BoardTab.objects.all().order_by('-id')
+    # data_all = BoardTab.objects.all().order_by('-id')
+    data_all = BoardTab.objects.all().order_by('-gnum', 'onum')
     
     paginator = Paginator(data_all,10)
     page = request.GET.get('page')
@@ -75,7 +76,6 @@ def searchFunc(request):    # 검색용
         
     return render(request, 'board.html', {'datas':datas})
 
-
 def contentFunc(request):
     page = request.GET.get('page')
     data = BoardTab.objects.get(id=request.GET.get('id'))
@@ -97,6 +97,15 @@ def updateOkFunc(request):
         upRec = BoardTab.objects.get(id=request.POST.get('id'))
         
         # 비밀번호 비교 후 수정 처리
+        if upRec.passwd == request.POST.get('passwd'):
+            upRec.name = request.POST.get('name')
+            upRec.mail = request.POST.get('mail')
+            upRec.title = request.POST.get('title')
+            upRec.cont = request.POST.get('cont')
+            upRec.save()
+        else:
+            return render(request, 'update.html',{'data_one':upRec,'msg':'비밀번호가 일치하지않습니다.'})
+        
     except Exception as e:
         print('수정 자료 처리 오류 : ',e)
         return render(request, 'error.html')
@@ -104,7 +113,19 @@ def updateOkFunc(request):
     return redirect("/board/list")  # 수정 후 목록 보기
 
 def deleteFunc(request):
-    pass
+    try:
+        delData = BoardTab.objects.get(id=request.GET.get('id'))
+    except Exception as e:
+        print('삭제 자료 읽기 오류 : ', e)
+        return render(request, 'error.htnl')
+
+    return render(request, 'delete.html',{'data_one':delData})
 
 def deleteOkFunc(request):
-    pass
+    delData = BoardTab.objects.get(id=request.POST.get('id'))
+    
+    if delData.passwd == request.POST.get('del_passwd'):
+        delData.delete()
+        return redirect("/board/list")  # 삭제 후 목록 보기
+    else:
+        return render(request, 'error.html')
